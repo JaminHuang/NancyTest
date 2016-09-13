@@ -1,0 +1,50 @@
+﻿@{
+    //Layout = null;
+    string verifity = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录界面</title>
+    <link href="/css/main.css" rel="stylesheet" type="text/css"  />
+    <script src="js/form.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="login">
+        <form action="/Home" method="post" id="form1">
+            <div id="bigimg">
+                <img src="images/bigimg.jpg" />
+            </div>
+            <div id="loginbox">
+                <div id="title-login">登录</div>
+                <a id="title-register" href="#">注册账号 ></a>
+                <div id="forinput">
+                    帐号：<br>
+                    <p>
+                        <input id="user" name="userId" tabindex="1" type="text">
+                        <span id="error_userId"></span>
+                    </p>密码：
+                    <a href="#" style="color: #00A1D6; float: right; *margin-top: -10px; display: block;">  忘记了密码?  </a>
+                    <br>
+                    <p>
+                        <input id="password" type="password" tabindex="2" name="userPwd">
+                        <span id="error_userPwd"></span>
+                    </p>
+                    验证码：
+                    <br>
+                    <p>
+                        <input id="code" name="verifity" tabindex="3" type="text">
+                        <span>
+                            <img id="Verifity"  onclick="src = '/CreateCode?'+Math.random()" src="/CreateCode" style="vertical-align: middle;">
+                        </span>
+                        <span id="error_code" style="margin-left: 18px;"></span>
+                    </p>
+                </div>
+                    <input type="submit" id="submit" value="登 录" onclick="return checkLogin()">
+            </div>
+        </form>
+        </div>
+</body>
+</html>
+

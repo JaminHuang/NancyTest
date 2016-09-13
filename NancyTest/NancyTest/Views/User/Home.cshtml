@@ -1,0 +1,75 @@
+﻿@using System.Data
+@{
+    //Layout = null;
+    var Count = 0;//记录读取次数
+    var userId = ViewBag.UserId;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Home</title>
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <script src="js/form.js" type="text/javascript"></script>
+    </head>
+
+    <body>
+        <div>
+            <p>登录成功!</p>
+            <p>欢迎你:@userId</p>
+        </div>
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th class="dataTableHeader" style="width: 20px;"></th>
+                    <th class="dataTableHeader" style="width: 30px;">编号</th>
+                    <th class="dataTableHeader">用户Id</th>
+                    <th class="dataTableHeader">用户Pwd</th>
+                    <th class="dataTableHeader" style="white-space: nowrap">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    Count++;
+                    if (Count%2 != 0)
+                    {
+                        <tr class="odd_row">
+                            <td><input type="checkbox" id="checkme1" /></td>
+                            <td style="text-align: center">@item.ItemArray[0]</td>
+                            <td style="white-space: nowrap">@item.ItemArray[1]</td>
+                            <td>@item.ItemArray[2]</td>
+                            <td><a onclick="showUpdateDiv()">修改</a>|<a href="/Delete/@item.ItemArray[1]"> 删除</a>|<a href="/Options/@item.ItemArray[1]"> 还原密码</a></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="even_row">
+                            <td><input type="checkbox" id="checkme2" /></td>
+                            <td style="text-align: center">@item.ItemArray[0]</td>
+                            <td style="white-space: nowrap">@item.ItemArray[1]</td>
+                            <td>@item.ItemArray[2]</td>
+                            <td><a onclick="showUpdateDiv()">修改</a>|<a href="/Delete/@item.ItemArray[1]"> 删除</a>|<a href="/Options/@item.ItemArray[1]"> 还原密码</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div id="show" class="white_content">
+            <p>用户名：<label id=" UserId">@userId</label></p>
+            <p>
+                新密码：<textarea id="newPwd" style="width:100px;height:20px;"></textarea><br />
+                再次输入：<textarea id="newPwd2" style="width:100px;height:20px;"></textarea><br />
+                <span id="errorInfo" class="errorMessage"></span>
+            </p>
+            <p>
+                <button class="buttom" onclick="postComment(this)" id="tijiao">修 改</button>
+                <button class="buttom" onclick="CancelSubmitComment()">取 消</button>
+            </p>
+        </div>
+        <div id="fade" class="black_overlay"></div>
+    </body>
+</html>
+
